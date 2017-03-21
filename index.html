@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grey's RPG</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css"></style>
+   	<link rel="stylesheet" type="text/css" href="assets/css/style.css"></style>
+    <!-- Added link to the jQuery Library -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="assets/javascript/game.js"/></script>
+    </head>
+<body>
+<article>
+<main>
+<h1> Your Characters </h1>
+<section id = "attackerSelect"> 
+<div class = "attacker firstClick" >
+	</div> 
+	<div class = "luke firstClick">	
+	<img src= "assets/images/Luke.png" class= "portrait">
+	<p> Name : Luke Skywalker </p>
+	<p> Attack : 8 </p>
+	<p>HP : 100 </p>
+	</div> 
+	<div class = "obiWan firstClick">
+	<img src= "assets/images/obiWan.jpg" class= "portrait">
+	<p> Name : Obi-Wan </p>
+	<p> Attack : 12 </p>
+	<p>HP : 120 </p>
+	</div>
+	<div class = "darthSidious firstClick">
+	<img src= "assets/images/darthSidious.jpg" class= "portrait">
+	<p> Name : Darth Sidious </p>
+	<p> Attack : 15 </p>
+	<p>HP : 150 </p>
+	</div>
+	<div class = "darthMaul firstClick">
+	<img src= "assets/images/darthMaul.jpg" class= "portrait">
+	<p> Name : Darth Maul </p>
+	<p> Attack : 15 </p>
+	<p>HP : 160 </p>
+	</div>
+
+</section>
+<h1 style= "clear: left"> Enemies Available To Attack </h1>
+<section id= "defenderSelect">
+	<div class = "lukePossibleDefender secondClick">
+	<img src= "assets/images/Luke.png" class= "portrait">
+		<p> Name : Luke </p>
+		<p> Attack : 8 </p>
+		<p>HP : 100 </p>
+	</div> 
+	<div class = "obiWanPossibleDefender secondClick">
+	<img src= "assets/images/obiWan.jpg" class= "portrait">
+		<p> Name : Obi-Wan </p>
+		<p> Attack : 12 </p>
+		<p>HP : 120 </p>
+	</div>
+	<div class = "darthSidiousPossibleDefender secondClick">
+	<img src= "assets/images/darthSidious.jpg" class= "portrait">
+		<p> Name : Darth Sidious </p>
+		<p> Attack : 15 </p>
+		<p>HP : 150 </p>
+	</div>
+	<div class = "darthMaulPossibleDefender secondClick">
+	<img src= "assets/images/darthMaul.jpg" class= "portrait">
+		<p> Name : Darth Maul </p>
+		<p> Attack : 15 </p>
+		<p>HP : 160 </p>
+	</div>
+</section>	
+	<button class="btn btn-primary number attack" style="clear: left;">
+	<h4> Attack </h4>
+	</button>
+
+<h1 style="clear: left"> Defender </h1>
+<section id ="defenderPosition" style = "width: 100%; height: 33%">
+<div class ="defender thirdClick">
+</div>
+</section>
+<div id = "reset" > 
+	<button class = reset> <h4> Reset </h4> </button>
+</div>
+</main>
+</article>
+</body>
+
+<script>
+var attacker = {
+	 	name : "Darth Bung",
+	 	attack : 25,
+	 	attackIterator: 25,
+	 	healthPoints : 160
+	 };
+
+var defender = {
+	 	name : "Darth Happy",
+	 	attack : 25,
+	 	attackIterator: 25,
+	 	healthPoints : 160
+	 }
+
+printPlayers();
+
+console.log(fightsWon);
+
+$("div.firstClick").on("click", function () 
+	{
+	clickExtractor(this);
+ 	attacker = playerSelect(this);
+ 	$("div.attacker").replaceWith("<div class='attacker firstClick'>" + "<img src="+attacker.image+">"+"<p> Name : " + attacker.name + "</p>" + "<p> Attack : " + attacker.attack + "</p>"+"<p>HP : " + attacker.healthPoints + "</p>"+ "</div>");
+	 $("div.attacker").show();
+	 console.log(fightsWon);
+ 	});
+
+$("div.secondClick").on("click", function () 
+	{
+	clickExtractor(this);
+ 	defender = defenderSelect(this);
+	$("div.defender").replaceWith("<div class='defender thirdClick'>"+ "<img src="+ defender.image+">" + "<p> Name : " + defender.name + "</p>" + "<p> Attack : " + defender.attack + "</p>"+"<p>HP : " + defender.healthPoints + "</p>"+ "</div>");
+	$("div.defender").show();
+	console.log(fightsWon);
+ 	});
+
+$("button.attack").on("click", function()
+	{	
+	attack(attacker,defender);
+	console.log(fightsWon);
+	console.log(secondTime);
+	if (fightsWon === 3){$("div.defender").replaceWith ( "<div class=defender><h1>You Really Won, Click Reset To Start Again </div>");
+	 resetTrigger= true;}
+	});
+
+$("button.reset").on("click", function()
+{
+reset();
+initPlayers();
+});
+</script>
+
+</html>
+
+
+</body>
